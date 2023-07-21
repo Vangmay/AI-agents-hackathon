@@ -7,8 +7,11 @@ from youtube_transcript_api import YouTubeTranscriptApi
 data = ""
 
 # Initialize the OpenAI and Cohere clients
-openai.api_key = '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'
-co = cohere.Client('Ern5c8BvsiO8wrZguwKM5e2E3hJTITfDoGy6ktuv')
+# IF THIS WORKS THAN REMOVE LINE 13 and 14
+openai.api_key = os.getenv["OPEN_AI_KEY"]
+co = cohere.Client(os.getenv["COHERE_KEY"])
+# openai.api_key = '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'
+# co = cohere.Client('Ern5c8BvsiO8wrZguwKM5e2E3hJTITfDoGy6ktuv')
 
 def audio_transcription(summary_info):
     if summary_info["input_type"] == "youtube":
