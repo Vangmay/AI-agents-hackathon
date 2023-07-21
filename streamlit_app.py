@@ -1,6 +1,13 @@
 import streamlit as st
 from streamlit_chat import message
 import openai
+import os 
+import torch
+import os 
+import whisper
+import numpy as np
+from pytube import YouTube
+import argparse
 # import cohere
 # from youtube_transcript_api import YouTubeTranscriptApi
 
@@ -8,14 +15,51 @@ import openai
 openai.api_key = 'Your Api Key'
 # co = cohere.Client('Ern5c8BvsiO8wrZguwKM5e2E3hJTITfDoGy6ktuv')
 
+
+def download(URL):
+  """
+  This function downloads the URL using some libraries and then
+  it will return the path of this audio
+  """
+  AUDIO_SAVE = "./audio"
+  audio = YouTube(URL).streams.filter(only_audio = True).first() 
+  try:
+      audio.download(AUDIO_SAVE)
+  except:
+      print("FAILED TO GET VIDEO, PLEASE CHECK YOUR URL AND ENSURE VIDEO IS NOT PRIVATE")
+
+  audio_path = os.path.join(AUDIO_SAVE, os.listdir(AUDIO_SAVE)[0])
+  print("AUDIO DOWNLOADED SUCCESSFULLY")
+  return audio_path
+
 def audio_transcription(summary_info):
-    # if summary_info["input_type"] == "youtube":
-    #     video_link = summary_info["link"]
-    #     video_id = video_link.split("=")[-1]
+    if summary_info["input_type"] == "youtube":
+        URL = summary_info["link"]
+        path = download(URL)
+        audio = whisper.load_audio(path)
+        audio = whisper.pad_or_trim(audio)
+        processed_audio = whisper.log_mel_spectrogram(audio).to(model.device)
+
+        torch.cuda.is_available()
+        DEVICE = "cuda" if torch.cuda.is_available() else "cpy"
+
+        model = whisper.load_model("base", device = DEVICE)
+
+        ## CHECKING LANGUAGE OF LECTURE
+        _, probs = model.detect_language(processed_audio)
+        language = max(probs, key=probs.get)
+
+
+        result = model.transcribe(path)
+        os.remove(path)
+        return result["text"]
+
+        # video_link = summary_info["link"]
+        # video_id = video_link.split("=")[-1]
         
-    #     response = YouTubeTranscriptApi.get_transcript(video_id)
-    #     text = " ".join([i["text"] for i in response])
-    #     return text
+        # response = YouTubeTranscriptApi.get_transcript(video_id)
+        # text = " ".join([i["text"] for i in response])
+        # return text
     
     if summary_info.get("input_type") == "local":
         file = summary_info.get("file")
