@@ -5,7 +5,7 @@ import cohere
 from pydub import AudioSegment
 import os
 from pytube import YouTube
-import gTTS
+from gtts import gTTS
 
 data = ""
 
