@@ -9,7 +9,7 @@ import streamlit as st
 
 data = ""
 
-st.write("OPEN_API_KEY", st.secrets["OPEN_API_KEY"])
+st.write("OPEN_AI_KEY", st.secrets["OPEN_AI_KEY"])
 st.write("COHERE_KEY", st.secrets["COHERE_KEY"])
 
 print(st.secrets["OPEN_AI_KEY"], 'KEY')
