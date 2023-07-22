@@ -5,7 +5,6 @@ import cohere
 from pydub import AudioSegment
 import os
 from pytube import YouTube
-from gtts import gTTS
 
 data = ""
 # Initialize the OpenAI and Cohere clients
