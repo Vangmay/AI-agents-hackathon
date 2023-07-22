@@ -12,6 +12,7 @@ data = ""
 st.write("OPEN_API_KEY", st.secrets["OPEN_API_KEY"])
 st.write("COHERE_KEY", st.secrets["COHERE_KEY"])
 
+print(st.secrets["OPEN_API_KEY"], 'KEY')
 # Initialize the OpenAI and Cohere clients
 openai.api_key = st.secrets["OPEN_API_KEY"]
 co = cohere.Client(st.secrets["COHERE_KEY"])
