@@ -5,11 +5,16 @@ import cohere
 from pydub import AudioSegment
 import os
 from pytube import YouTube
+import streamlit as st
 
 data = ""
+
+st.write("OPEN_API_KEY", st.secrets["OPEN_API_KEY"])
+st.write("COHERE_KEY", st.secrets["COHERE_KEY"])
+
 # Initialize the OpenAI and Cohere clients
-openai.api_key = os.getenv["OPEN_AI_KEY"]
-co = cohere.Client(os.getenv["COHERE_KEY"])
+openai.api_key = st.secrets["OPEN_API_KEY"]
+co = cohere.Client(st.secrets["COHERE_KEY"])
 
 # openai.api_key = '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'
 # co = cohere.Client('Ern5c8BvsiO8wrZguwKM5e2E3hJTITfDoGy6ktuv')
