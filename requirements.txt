@@ -2,7 +2,6 @@ streamlit==1.12.0
 streamlit-chat==0.1.1
 openai==0.27.8
 pytube
-argparse
-git+https://github.com/openai/whisper.git 
 cohere==4.17.0
-youtube-transcript-api==0.6.1
+gtts
+os
