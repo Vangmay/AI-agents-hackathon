@@ -88,7 +88,10 @@ def audio_transcription(summary_info):
 
 def summary(summary_info):
     try:
-        text_to_summarize = audio_transcription(summary_info)
+         if summary_info.get("input_type") != "text":
+            text_to_summarize = audio_transcription(summary_info)
+        else:
+            text_to_summarize = summary_info["text"]
 
         response = co.summarize(
             model=summary_info['model'],
@@ -115,13 +118,19 @@ st.header("Summary Information")
 
 input_type = st.radio(
         "Select the input type:",
-        ("youtube", "local")
+        ("youtube", "local","text")
     )
 if input_type == "youtube":
             link = st.text_input("Input YouTube link:")
             file = None
+            text = None
 elif input_type == "local":
             file = st.file_uploader("Upload local audio or video file:", type=["mp3", "wav", "mp4"])
+            link = None
+            text = None
+elif input_type == "text":
+            text = st.text_area("Paste your text here:")
+            file = None
             link = None
   
 with st.form("summary_info"):   
