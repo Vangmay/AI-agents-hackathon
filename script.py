@@ -77,7 +77,6 @@ def audio_transcription(summary_info):
                     transcripts.append(transcript["text"])
                 
                 return " ".join(transcripts)
-
             else:
                 # You may need to replace this line based on the specific speech-to-text service you're using
                 transcript = openai.Audio.translate("whisper-1", file)
@@ -90,7 +89,7 @@ def summary(summary_info):
     try:
          if summary_info.get("input_type") != "text":
             text_to_summarize = audio_transcription(summary_info)
-        else:
+         else:
             text_to_summarize = summary_info["text"]
 
         response = co.summarize(
