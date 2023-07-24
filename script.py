@@ -92,16 +92,16 @@ def summary(summary_info):
          else:
             text_to_summarize = summary_info["text"]
 
-        response = co.summarize(
+         response = co.summarize(
             model=summary_info['model'],
             text=text_to_summarize,
             length=summary_info['length'],
             format=summary_info['format'],
             extractiveness='medium'
         )
-        summary = response.summary
+         summary = response.summary
 
-        return summary
+         return summary
     except cohere.CohereAPIError as e:
         print(f"Could not generate summary due to the following error: {e}")
         return None
