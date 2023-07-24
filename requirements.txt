@@ -6,5 +6,6 @@ pydub
 pytube
 torch
 numpy
+argrase
 gTTS
 
