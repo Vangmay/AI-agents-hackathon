@@ -18,6 +18,6 @@ We welcome contributions to the SonicSummarizer project! Please feel free to sub
 
 SonicSummarizer uses the following open source libraries:
 
-OpenAI's Whisper
-Cohere's Summarizer
-gTTS library
+1. OpenAI's Whisper
+2. Cohere's Summarizer
+3. gTTS library
