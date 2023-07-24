@@ -5,5 +5,6 @@ cohere==4.17.0
 pydub
 pytube
 torch
+numpy
 gTTS
 os
