@@ -4,5 +4,6 @@ openai==0.27.8
 cohere==4.17.0
 pydub
 pytube
+torch
 gTTS
 os
