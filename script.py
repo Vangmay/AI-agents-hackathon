@@ -151,6 +151,7 @@ with st.form("summary_info"):
         
         summary_info = {
             "input_type": input_type,
+            "text": text,
             "link": link,
             "file": file,
             "model": model,
