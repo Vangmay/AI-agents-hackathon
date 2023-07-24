@@ -17,8 +17,6 @@ print(st.secrets["OPEN_AI_KEY"], 'KEY')
 openai.api_key = st.secrets["OPEN_AI_KEY"]
 co = cohere.Client(st.secrets["COHERE_KEY"])
 
-# openai.api_key = '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'
-# co = cohere.Client('Ern5c8BvsiO8wrZguwKM5e2E3hJTITfDoGy6ktuv')
 
 def download(URL):
     # This function downloads the URL using Pytube and returns the path of the audio file
